@@ -14,7 +14,7 @@ stage('Run NodeJS Job') {
 
 /* Let's make sure we have the repository cloned to our workspace */
 
-sh 'npm start'
+sh 'node server.js'
 
 }
 
