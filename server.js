@@ -1,6 +1,17 @@
-var http = require('http');
-http.createServer(function (req, res) {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end('Hello World\n');
-}).listen(3000, "127.0.0.1");
-console.log('Server running at http://127.0.0.1:3000/');
+'use strict';
+
+const express = require('express');
+
+// Constants
+const PORT = 9001;
+const HOST = '0.0.0.0';
+
+// App
+const app = express();
+app.get('/', (req, res) => {
+  res.send('Hello Guys how are you ???\n');
+});
+
+app.listen(PORT, HOST);
+console.log(`Running on http://${HOST}:${PORT}`);
+

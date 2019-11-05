@@ -1,22 +1,37 @@
-node {
+node 
+{
+	def app
+	stage('Clone repository') 
+	{
+		checkout scm
+	}
 
-def app
+	stage('Build image') 
+	{
+		app = docker.build("hsivabc/nodeapi")
+	}
 
-stage('Clone repository') {
+	stage('Test image')
+	{
+		app.inside 
+		{
+			sh 'echo "Tests passed"'
+		}
 
-/* Let's make sure we have the repository cloned to our workspace */
+	}
 
-checkout scm
+	stage('Push image')
+	{
+		app.push("latest")
+	}
 
-}
+	stage('Remove Local Docker Images') 
+	{
+            sh 'docker images -q | xargs --no-run-if-empty docker rmi --force'
+	}
 
-stage('Run NodeJS Job') {
-
-/* Let's make sure we have the repository cloned to our workspace */
-
-sh 'node server.js'
-
-}
-
-
+	stage('Deploy in Kubernetes Cluster') 
+	{
+	    sh 'bash nodesvc.sh' 
+	}
 }
