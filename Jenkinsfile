@@ -30,7 +30,7 @@ node
             sh 'docker images -q | xargs --no-run-if-empty docker rmi --force'
 	}
 
-	stage('Deploy in Kubernetes Cluster') 
+	stage('Deploy in Docker') 
 	{
 	    sh 'bash nodesvc.sh' 
 	}
