@@ -1,3 +1,6 @@
+@Library('my-shared-lib')_
+
+
 node 
 {
 	def app
@@ -35,13 +38,14 @@ node
 	{
 	    sh 'bash nodesvc.sh' 
 	}
-        try
-        {
-	    				/* Use slackNotifier.groovy from shared library and provide current build result as parameter */   
-            				slackNotifier(currentBuild.currentResult)
-            				cleanWs()
-        }
-    
- }
+	post {
+        	always 
+		{
+	    		/* Use slackNotifier.groovy from shared library and provide current build result as parameter */   
+            		slackNotifier(currentBuild.currentResult)
+            		cleanWs()
+        	}
+    	}
+}
 
 
