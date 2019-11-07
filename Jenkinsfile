@@ -4,6 +4,7 @@
 node 
 {
 	def app
+	try {
 	stage('Clone repository') 
 	{
 		checkout scm
@@ -38,14 +39,17 @@ node
 	{
 	    sh 'bash nodesvc.sh' 
 	}
-	post {
-        	always 
-		{
-	    		/* Use slackNotifier.groovy from shared library and provide current build result as parameter */   
-            		slackNotifier(currentBuild.currentResult)
-            		cleanWs()
-        	}
-    	}
+	}
+	catch(e) 
+	{
+		throw e
+	}
+	finally
+	{
+            slackNotifier(currentBuild.currentResult)
+            cleanWs()
+        }
+    	
 }
 
 
