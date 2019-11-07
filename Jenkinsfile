@@ -41,9 +41,6 @@ node
             				slackNotifier(currentBuild.currentResult)
             				cleanWs()
         }
-	catch
-	{
-	}
     
  }
 
