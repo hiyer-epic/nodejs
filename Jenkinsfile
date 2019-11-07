@@ -34,15 +34,16 @@ node
 	{
 	    sh 'bash nodesvc.sh' 
 	}
-        post 
+        try
         {
-        	always 
-		{
 	    				/* Use slackNotifier.groovy from shared library and provide current build result as parameter */   
             				slackNotifier(currentBuild.currentResult)
             				cleanWs()
-        	}
-    	}
+        }
+	catch
+	{
+	}
+    
  }
 
 
