@@ -24,7 +24,7 @@ node
 
 	}
 
-	stage('Push image')
+	stage('Push images')
 	{
 		app.push("latest")
 	}
