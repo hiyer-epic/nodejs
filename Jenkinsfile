@@ -31,7 +31,7 @@ node
 
 	stage('Remove Local Docker Images') 
 	{
-	    sh 'docker rm -f haritibcoblog-node-webapp'
+	#    sh 'docker rm -f haritibcoblog-node-webapp'
             sh 'docker images -q | xargs --no-run-if-empty docker rmi --force'
 	}
 
