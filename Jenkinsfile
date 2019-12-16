@@ -31,7 +31,6 @@ node
 
 	stage('Remove Local Docker Images') 
 	{
-            sh 'docker images -q | xargs --no-run-if-empty docker rmi --force'
 	}
 
 	stage('Deploy in Docker') 
